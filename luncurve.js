@@ -17,22 +17,40 @@ var LISSAJOUS_UNCURVE = (function() {
     
     var screen = {
 
-     	width: process.stdout.columns,
+    	margin: 6,
 
-        height: process.stdout.rows,
+     	width: function() {
 
-        centerX: (function() {
+     		return process.stdout.columns;
 
-            return Math.ceil(process.stdout.columns / 2);
+     	},
 
-        })(),
+        height: function() {
 
-        centerY: (function() {
+        	return process.stdout.rows;
 
-            return Math.ceil(process.stdout.rows / 2);
-        
-        })(),
+        },
 
+        center: function() {
+
+        	var x = Math.ceil(this.width() / 2);
+
+        	var y = Math.ceil(this.height() / 2);
+
+        	return { x: x, y: y };
+
+        },
+
+        max: function() {
+
+        	var x = Math.ceil((this.width() - this.margin) / 2);
+
+        	var y = Math.ceil((this.height() - this.margin) / 2);
+
+        	return { x: x, y: y };
+
+        },
+        	
     	cls: function() {
 
         process.stdout.write("\033c");
@@ -68,16 +86,42 @@ var LISSAJOUS_UNCURVE = (function() {
 
     var animation = {
 
-    	delay: 10,
+    	delay: 1000,
 
-    	step: 0.1
+    	step: 0.1,
+
+    	char: "●",
+
+    	drawData: function(x, y) {
+
+    		screen.cursorTo(x, y);
+
+    		screen.print("amplitude: " + figure.A);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("angular freq a: " + figure.a);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("angular freq b: " + figure.b);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("damping const x: " + figure.dx);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("damping const y: " + figure.dy);
+    	
+    	}
 
     };
 
 
     function LissajousCurve(a, b, p, dx, dy) {
 
-        this.A = Math.ceil(screen.height - (screen.height * 0.2)) / 2;
+        this.A = screen.max().y;
 
         this.B = this.A;
 
@@ -97,6 +141,10 @@ var LISSAJOUS_UNCURVE = (function() {
 
         this.plot = function(t) {
 
+        	this.A = screen.max().y;
+
+        	this.B = this.A;
+
 			this.x = Math.ceil(this.A * Math.cos(this.a * t + this.p) ^ -this.dx * t);
 
             this.y = Math.ceil(this.B * Math.sin(this.b * t) ^ -this.dy * t);
@@ -109,7 +157,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     
 
-    var figure = new LissajousCurve(2, 3, 0, 0);
+    var figure = new LissajousCurve(2, 6, 0, 0, 0);
 
     screen.hideCursor();
 
@@ -117,11 +165,15 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	screen.cls();
 
+    	animation.drawData(2, 2);
+
     	for (var t = 0; t < 2000; t += 1) {
 
-    		screen.cursorTo(screen.centerX + figure.plot(t).x, screen.centerY + figure.plot(t).y);
+    		var c = screen.center();
 
-    		screen.out("●");
+    		screen.cursorTo(c.x + figure.plot(t).x, c.y + figure.plot(t).y);
+
+    		screen.out(animation.char);
 
     	}
 
