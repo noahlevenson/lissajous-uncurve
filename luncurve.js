@@ -4,13 +4,13 @@
 *
 * 	by noah levenson 
 *
-* 	usage: node luncurve.js a b p [dx dy]
+* 	usage: node luncurve.js a b [p dx dy]
 *
 * 	a = angular frequency a
 * 	b = angular frequency b
-* 	p = initial phase
-* 	dx = x damping constant (optional)
-* 	dy = y damping constant (optional)
+* 	p = initial phase [optional]
+* 	dx = x damping constant [optional]
+* 	dy = y damping constant [optional]
 */
 
 var LISSAJOUS_UNCURVE = (function() {
@@ -86,7 +86,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     var animation = {
 
-    	delay: 1000,
+    	delay: 10,
 
     	step: 0.1,
 
@@ -113,6 +113,10 @@ var LISSAJOUS_UNCURVE = (function() {
     		screen.cursorTo(x, y += 1);
 
     		screen.print("damping const y: " + figure.dy);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("phase: " + figure.p);
     	
     	}
 
@@ -155,9 +159,70 @@ var LISSAJOUS_UNCURVE = (function() {
 
     }
 
+
+
+    var args = process.argv;
+
+    if (args.length < 4) {
+
+    	screen.print("");
+
+    	screen.print("Error: missing arguments");
+
+    	process.exit();
+    
+    }
+
+    else {
+
+    	var a = args[2];
+
+    	var b = args[3];
+
+    	if (args[4]) {
+
+    		var p = parseInt(args[4], 10);
+    	
+    	}
+
+    	else {
+
+    		var p = 0;
+
+    	}
+
+    	if (args[5] && !args[6]) {
+
+    		var dx = args[5];
+
+    		var dy = dx;
+
+    	}
+
+    	else if (args[5] && args[6]) {
+
+    		var dx = args[5];
+
+    		var dy = args[6];
+
+    	}
+
+    	else {
+
+    		var dx = 0;
+
+    		var dy = dx;
+    	
+    	}
+
+    	var figure = new LissajousCurve(a, b, p, dx, dy);
+    
+    }
+
+
     
 
-    var figure = new LissajousCurve(2, 6, 0, 0, 0);
+   
 
     screen.hideCursor();
 
