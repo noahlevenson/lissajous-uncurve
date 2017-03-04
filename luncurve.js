@@ -75,7 +75,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	delay: 10,
 
-    	precision: 0.1
+    	step: 0.1
 
     };
 
@@ -113,7 +113,7 @@ var LISSAJOUS_UNCURVE = (function() {
     }
 
     
-    
+
     var figure = new LissajousCurve(2, 3, 0, 0);
 
     screen.hideCursor();
@@ -130,7 +130,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	}
 
-    	figure.p += animation.precision;
+    	figure.p += animation.step;
 
     }, animation.delay);
 
