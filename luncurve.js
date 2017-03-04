@@ -15,9 +15,9 @@
 
 var LISSAJOUS_UNCURVE = (function() {
     
-	var world = {
+    var screen = {
 
-    	width: process.stdout.columns,
+     	width: process.stdout.columns,
 
         height: process.stdout.rows,
 
@@ -31,12 +31,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
             return Math.ceil(process.stdout.rows / 2);
         
-        })()
-
-    };
-
-
-    var screen = {
+        })(),
 
     	cls: function() {
 
@@ -82,7 +77,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     function LissajousCurve(a, b, p, dx, dy) {
 
-        this.A = Math.ceil(world.height - (world.height * 0.2)) / 2;
+        this.A = Math.ceil(screen.height - (screen.height * 0.2)) / 2;
 
         this.B = this.A;
 
@@ -124,7 +119,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	for (var t = 0; t < 2000; t += 1) {
 
-    		screen.cursorTo(world.centerX + figure.plot(t).x, world.centerY + figure.plot(t).y);
+    		screen.cursorTo(screen.centerX + figure.plot(t).x, screen.centerY + figure.plot(t).y);
 
     		screen.out("●");
 
