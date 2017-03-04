@@ -1,6 +1,6 @@
 /*
 *	lissajous-uncurve
-* 	a node.js tool for animating lissajous curves in the uncurvy ascii terminal
+* 	responsively animate lissajous curves in the uncurvy ascii terminal
 *
 * 	by noah levenson 
 *
@@ -17,7 +17,7 @@ var LISSAJOUS_UNCURVE = (function() {
     
     var screen = {
 
-    	margin: 6,
+    	margin: 30,
 
      	width: function() {
 
@@ -96,7 +96,11 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		screen.cursorTo(x, y);
 
-    		screen.print("amplitude: " + figure.A);
+    		screen.print("amplitude A: " + figure.A);
+
+    		screen.cursorTo(x, y += 1);
+
+    		screen.print("amplitude B: " + figure.B);
 
     		screen.cursorTo(x, y += 1);
 
@@ -125,9 +129,9 @@ var LISSAJOUS_UNCURVE = (function() {
 
     function LissajousCurve(a, b, p, dx, dy) {
 
-        this.A = screen.max().y;
+        this.A = screen.max().x;
 
-        this.B = this.A;
+        this.B = screen.max().y;
 
         this.a = a;
 
@@ -145,9 +149,9 @@ var LISSAJOUS_UNCURVE = (function() {
 
         this.plot = function(t) {
 
-        	this.A = screen.max().y;
+        	this.A = screen.max().x;
 
-        	this.B = this.A;
+        	this.B = screen.max().y;
 
 			this.x = Math.ceil(this.A * Math.cos(this.a * t + this.p) ^ -this.dx * t);
 
