@@ -28,4 +28,4 @@ Try:
 
 `1 1 0.004 0.001`
 
-Note: Nonzero damping constants tend to generate figures too complex to usefully render in the limited resolution of the ASCII terminal.
+Note: Nonzero damping constants tend to generate figures too complex to render meanginfully, given the limited resolution of the raster.
