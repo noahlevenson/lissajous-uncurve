@@ -16,16 +16,16 @@ The Lissajous figure can be responsively scaled. Resize the terminal window and 
 
 Try:
 
-node luncurve.js 2 1 
+`2 1` 
 
-node luncurve.js 3 4 
+`3 4` 
 
-node luncurve.js 3 4 0.003 
+`3 4 0.003`
 
-node luncurve.js 1 1
+`1 1`
 
-node luncurve.js 2 6
+`2 6
 
-node luncurve.js 1 1 0.004 0.001
+`1 1 0.004 0.001`
 
 Note: Nonzero damping constants tend to generate figures too complex to usefully render in the limited resolution of the ASCII terminal.
