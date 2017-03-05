@@ -171,11 +171,11 @@ var LISSAJOUS_UNCURVE = (function() {
 
         this.plot = function(t) {
 
-        	this.A = screen.getMaxArea().x;
+            this.A = screen.getMaxArea().x;
 
-        	this.B = screen.getMaxArea().y;
+            this.B = screen.getMaxArea().y;
 
-			this.x = Math.ceil(this.A * Math.cos(this.a * t + this.p) ^ -this.dx * t);
+            this.x = Math.ceil(this.A * Math.cos(this.a * t + this.p) ^ -this.dx * t);
 
             this.y = Math.ceil(this.B * Math.sin(this.b * t) ^ -this.dy * t);
 
