@@ -14,7 +14,7 @@ p = initial phase [optional]
 
 The Lissajous figure can be responsively scaled. Resize the terminal window and its amplitude values will adjust automatically.
 
-Try:
+Some figures to try:
 
 `2 1` 
 
