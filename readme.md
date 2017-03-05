@@ -4,7 +4,7 @@ Lissajous Uncurve is a command line tool for generating and responsively animati
 
 Usage: 
 
-```node luncurve.js a b [dx dy p]```
+`node luncurve.js a b [dx dy p]`
 
 a = angular frequency a  
 b = angular frequency b  
