@@ -17,35 +17,35 @@ var LISSAJOUS_UNCURVE = (function() {
     
     var screen = {
 
-    	margin: 30,
+    	margin: .3,
 
-     	width: function() {
+     	getWidth: function() {
 
      		return process.stdout.columns;
 
      	},
 
-        height: function() {
+        getHeight: function() {
 
         	return process.stdout.rows;
 
         },
 
-        center: function() {
+        getCenter: function() {
 
-        	var x = Math.ceil(this.width() / 2);
+        	var x = Math.ceil(this.getWidth() / 2);
 
-        	var y = Math.ceil(this.height() / 2);
+        	var y = Math.ceil(this.getHeight() / 2);
 
         	return { x: x, y: y };
 
         },
 
-        max: function() {
+        getMaxArea: function() {
 
-        	var x = Math.ceil((this.width() - this.margin) / 2);
+        	var x = Math.ceil((this.getWidth() - (this.getWidth() * this.margin)) / 2);
 
-        	var y = Math.ceil((this.height() - this.margin) / 2);
+        	var y = Math.ceil((this.getHeight() - (this.getHeight() * this.margin)) / 2);
 
         	return { x: x, y: y };
 
@@ -96,31 +96,31 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		screen.cursorTo(x, y);
 
-    		screen.print("amplitude A: " + figure.A);
+    		screen.out("amplitude A: " + figure.A);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("amplitude B: " + figure.B);
+    		screen.out("amplitude B: " + figure.B);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("angular freq a: " + figure.a);
+    		screen.out("angular freq a: " + figure.a);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("angular freq b: " + figure.b);
+    		screen.out("angular freq b: " + figure.b);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("damping const x: " + figure.dx);
+    		screen.out("damping const x: " + figure.dx);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("damping const y: " + figure.dy);
+    		screen.out("damping const y: " + figure.dy);
 
     		screen.cursorTo(x, y += 1);
 
-    		screen.print("phase: " + figure.p);
+    		screen.out("phase: " + figure.p.toFixed(2));
     	
     	},
 
@@ -132,9 +132,9 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		animation.drawData(2, 2);
 
-    		for (var t = 0; t < 2000; t += 1) {
+            var c = screen.getCenter();
 
-    			var c = screen.center();
+    		for (var t = 0; t < 2000; t += 1) {
 
     			screen.cursorTo(c.x + figure.plot(t).x, c.y + figure.plot(t).y);
 
@@ -151,9 +151,9 @@ var LISSAJOUS_UNCURVE = (function() {
 
     function LissajousCurve(a, b, p, dx, dy) {
 
-        this.A = screen.max().x;
+        this.A = screen.getMaxArea().x;
 
-        this.B = screen.max().y;
+        this.B = screen.getMaxArea().y;
 
         this.a = a;
 
@@ -171,9 +171,9 @@ var LISSAJOUS_UNCURVE = (function() {
 
         this.plot = function(t) {
 
-        	this.A = screen.max().x;
+        	this.A = screen.getMaxArea().x;
 
-        	this.B = screen.max().y;
+        	this.B = screen.getMaxArea().y;
 
 			this.x = Math.ceil(this.A * Math.cos(this.a * t + this.p) ^ -this.dx * t);
 
