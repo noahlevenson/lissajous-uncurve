@@ -1,6 +1,6 @@
 # lissajous-uncurve
 
-Lissajous-uncurve is a command line toy for generating and responsively animating ASCII [Lissajous curves](https://en.wikipedia.org/wiki/Lissajous_curve).
+Lissajous Uncurve is a command line toy for generating and responsively animating ASCII [Lissajous curves](https://en.wikipedia.org/wiki/Lissajous_curve).
 
 Usage: 
 
