@@ -4,13 +4,13 @@
 *
 * 	by noah levenson 
 *
-* 	usage: node luncurve.js a b [p dx dy]
+* 	usage: node luncurve.js a b [dx dy p]
 *
 * 	a = angular frequency a
 * 	b = angular frequency b
-* 	p = initial phase [optional]
 * 	dx = x damping constant [optional]
 * 	dy = y damping constant [optional]
+* 	p = initial phase [optional]
 */
 
 var LISSAJOUS_UNCURVE = (function() {
@@ -204,31 +204,19 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	var b = args[3];
 
-    	if (args[4]) {
+    	if (args[4] && !args[5]) {
 
-    		var p = parseInt(args[4], 10);
-    	
-    	}
-
-    	else {
-
-    		var p = 0;
-
-    	}
-
-    	if (args[5] && !args[6]) {
-
-    		var dx = args[5];
+    		var dx = args[4];
 
     		var dy = dx;
 
     	}
 
-    	else if (args[5] && args[6]) {
+    	else if (args[4] && args[5]) {
 
-    		var dx = args[5];
+    		var dx = args[4];
 
-    		var dy = args[6];
+    		var dy = args[5];
 
     	}
 
@@ -238,6 +226,18 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		var dy = dx;
     	
+    	}
+
+    	if (args[6]) {
+
+    		var p = parseInt(args[6], 10);
+
+    	}
+
+    	else {
+
+    		var p = 0;
+
     	}
 
     	var figure = new LissajousCurve(a, b, p, dx, dy);
