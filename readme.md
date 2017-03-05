@@ -28,4 +28,4 @@ Try:
 
 `1 1 0.004 0.001`
 
-Note: Nonzero damping constants tend to generate figures too complex to render meanginfully, given the limited resolution of the raster.
+Note: Given the limited resolution of the raster, nonzero damping constants tend to generate figures too complex to render meanginfully.
