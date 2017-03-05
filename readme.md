@@ -1,10 +1,10 @@
 # lissajous-uncurve
 
-## Responsively animate Lissajous curves in the uncurvy ASCII terminal
+Lissajous-uncurve is a command line toy for generating and responsively animating ASCII Lissajous curves.
 
-lissajous-uncurve generates and animates ASCII Lissajous curves in the command line environment.
+Usage: 
 
-Usage: node luncurve.js a b [dx dy p]
+```node luncurve.js a b [dx dy p]```
 
 a = angular frequency a  
 b = angular frequency b  
