@@ -122,6 +122,28 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		screen.print("phase: " + figure.p);
     	
+    	},
+
+    	update: function() {
+
+    		screen.cls();
+
+    		screen.hideCursor();
+
+    		animation.drawData(2, 2);
+
+    		for (var t = 0; t < 2000; t += 1) {
+
+    			var c = screen.center();
+
+    			screen.cursorTo(c.x + figure.plot(t).x, c.y + figure.plot(t).y);
+
+    			screen.out(animation.char);
+
+    		}
+
+    		figure.p += animation.step;
+
     	}
 
     };
@@ -162,7 +184,6 @@ var LISSAJOUS_UNCURVE = (function() {
         }
 
     }
-
 
 
     var args = process.argv;
@@ -220,34 +241,9 @@ var LISSAJOUS_UNCURVE = (function() {
     	}
 
     	var figure = new LissajousCurve(a, b, p, dx, dy);
+
+    	var intervalHandler = setInterval(animation.update, animation.delay);
     
     }
-
-
-    
-
-   
-
-    screen.hideCursor();
-
-   	setInterval(function() {
-
-    	screen.cls();
-
-    	animation.drawData(2, 2);
-
-    	for (var t = 0; t < 2000; t += 1) {
-
-    		var c = screen.center();
-
-    		screen.cursorTo(c.x + figure.plot(t).x, c.y + figure.plot(t).y);
-
-    		screen.out(animation.char);
-
-    	}
-
-    	figure.p += animation.step;
-
-    }, animation.delay);
 
 })();
