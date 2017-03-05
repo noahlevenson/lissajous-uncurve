@@ -151,10 +151,6 @@ var LISSAJOUS_UNCURVE = (function() {
 
     function LissajousCurve(a, b, p, dx, dy) {
 
-        this.A = screen.getMaxArea().x;
-
-        this.B = screen.getMaxArea().y;
-
         this.a = a;
 
         this.b = b;
@@ -168,6 +164,10 @@ var LISSAJOUS_UNCURVE = (function() {
         this.x = undefined;
 
         this.y = undefined;
+
+        this.A = undefined;
+
+        this.B = undefined;
 
         this.plot = function(t) {
 
