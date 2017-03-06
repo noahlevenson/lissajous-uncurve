@@ -69,6 +69,12 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	},
 
+        showCursor: function() {
+
+            this.print("\033[?25h");
+        
+        },
+
     	out: function(outString) {
 
         process.stdout.write(outString);
@@ -91,6 +97,34 @@ var LISSAJOUS_UNCURVE = (function() {
     	step: 0.1,
 
     	char: "●",
+
+        start: function() {
+
+            this.intervalHandler = setInterval(animation.update, animation.delay);
+
+            process.stdin.resume();
+
+            process.stdin.setRawMode(true);
+
+            process.stdin.on("data", function(c, k) {
+
+                animation.kill();
+
+            });
+
+        },
+
+        kill: function() {
+
+            clearInterval(animation.start.intervalHandler);
+
+            screen.cls();
+
+            screen.showCursor();
+
+            process.exit();
+
+        },
 
     	drawData: function(x, y) {
 
@@ -242,8 +276,8 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	var figure = new LissajousCurve(a, b, p, dx, dy);
 
-    	var intervalHandler = setInterval(animation.update, animation.delay);
-    
+        animation.start();
+
     }
 
 })();
