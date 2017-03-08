@@ -50,16 +50,28 @@ var LISSAJOUS_UNCURVE = (function() {
         	return { x: x, y: y };
 
         },
+
+        out: function(outString) {
+
+        process.stdout.write(outString);
+
+    	},
+
+    	print: function(printString) {
+
+        process.stdout.write(printString + "\n");
+
+    	},
         	
     	cls: function() {
 
-        process.stdout.write("\033c");
+        this.out("\033c");
 
     	},
 
     	cursorTo: function(x, y) {
 
-        process.stdout.write("\033[" + y + ";" + x + "H");
+        this.out("\033[" + y + ";" + x + "H");
     
     	},
 
@@ -73,19 +85,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
             this.print("\033[?25h");
         
-        },
-
-    	out: function(outString) {
-
-        process.stdout.write(outString);
-
-    	},
-
-    	print: function(printString) {
-
-        process.stdout.write(printString + "\n");
-
-    	}
+        }
 
     };
 
@@ -102,23 +102,19 @@ var LISSAJOUS_UNCURVE = (function() {
 
         start: function() {
 
-            engine.intervalId = setInterval(engine.update, engine.delay);
+            engine.intervalId = setInterval(this.update, this.delay);
 
             process.stdin.resume();
 
             process.stdin.setRawMode(true);
 
-            process.stdin.on("data", function(c, k) {
-
-                engine.kill();
-
-            });
+            process.stdin.on("data", this.kill);
 
         },
 
         kill: function() {
 
-            clearInterval(engine.intervalId);
+            clearInterval(this.intervalId);
 
             screen.cls();
 
