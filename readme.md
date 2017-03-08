@@ -12,9 +12,9 @@ dx = x damping constant [optional]
 dy = y damping constant [optional]  
 p = initial phase [optional]  
 
-To exit, press any key.
-
 To responsively scale the Lissajous figure, resize the terminal window and its amplitude values will adjust automatically.
+
+To exit, press any key.
 
 Some figures to try:
 
