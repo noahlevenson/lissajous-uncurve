@@ -53,25 +53,25 @@ var LISSAJOUS_UNCURVE = (function() {
 
         out: function(outString) {
 
-        process.stdout.write(outString);
+        	process.stdout.write(outString);
 
     	},
 
     	print: function(printString) {
 
-        process.stdout.write(printString + "\n");
+        	process.stdout.write(printString + "\n");
 
     	},
         	
     	cls: function() {
 
-        this.out("\033c");
+        	this.out("\033c");
 
     	},
 
     	cursorTo: function(x, y) {
 
-        this.out("\033[" + y + ";" + x + "H");
+        	this.out("\033[" + y + ";" + x + "H");
     
     	},
 
