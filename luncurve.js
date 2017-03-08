@@ -77,13 +77,13 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	hideCursor: function() {
 
-			this.print("\033[?25l");
+            this.print("\033[?25l");
 
     	},
 
         showCursor: function() {
 
-			this.print("\033[?25h");
+            this.print("\033[?25h");
         
         }
 
