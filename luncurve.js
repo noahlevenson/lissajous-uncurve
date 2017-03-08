@@ -102,24 +102,24 @@ var LISSAJOUS_UNCURVE = (function() {
 
         start: function() {
 
-            intervalId = setInterval(this.update, this.delay);
+            this.intervalId = setInterval(this.update, this.delay);
 
             process.stdin.resume();
 
             process.stdin.setRawMode(true);
 
-            process.stdin.on("data", this.kill);
+            process.stdin.on("data", this.kill.bind(this.intervalId));
 
         },
 
         kill: function() {
 
-            clearInterval(intervalId);
+            clearInterval(this);
 
             screen.cls();
 
             screen.showCursor();
-            
+
             process.exit();
 
         },
