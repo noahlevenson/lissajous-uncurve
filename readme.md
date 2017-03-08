@@ -14,7 +14,7 @@ p = initial phase [optional]
 
 To exit, press any key.
 
-The Lissajous figure can be responsively scaled. Resize the terminal window and its amplitude values will adjust automatically.
+To responsively scale the Lissajous figure, resize the terminal window and its amplitude values will adjust automatically.
 
 Some figures to try:
 
