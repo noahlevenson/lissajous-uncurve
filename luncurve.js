@@ -90,17 +90,17 @@ var LISSAJOUS_UNCURVE = (function() {
     };
 
 
-    var animation = {
+    var engine = {
 
     	delay: 10,
 
     	step: 0.1,
 
-    	char: "●",
+        char: "●",
 
         start: function() {
 
-            this.intervalHandler = setInterval(animation.update, animation.delay);
+            this.intervalHandler = setInterval(engine.update, engine.delay);
 
             process.stdin.resume();
 
@@ -108,7 +108,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
             process.stdin.on("data", function(c, k) {
 
-                animation.kill();
+                engine.kill();
 
             });
 
@@ -116,7 +116,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
         kill: function() {
 
-            clearInterval(animation.start.intervalHandler);
+            clearInterval(engine.start.intervalHandler);
 
             screen.cls();
 
@@ -164,7 +164,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     		screen.hideCursor();
 
-    		animation.drawData(2, 2);
+    		engine.drawData(2, 2);
 
             var c = screen.getCenter();
 
@@ -172,11 +172,11 @@ var LISSAJOUS_UNCURVE = (function() {
 
     			screen.cursorTo(c.x + figure.plot(t).x, c.y + figure.plot(t).y);
 
-    			screen.out(animation.char);
+    			screen.out(engine.char);
 
     		}
 
-    		figure.p += animation.step;
+    		figure.p += engine.step;
 
     	}
 
@@ -276,7 +276,7 @@ var LISSAJOUS_UNCURVE = (function() {
 
     	var figure = new LissajousCurve(a, b, p, dx, dy);
 
-        animation.start();
+        engine.start();
 
     }
 
