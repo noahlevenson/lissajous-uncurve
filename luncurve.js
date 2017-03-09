@@ -17,7 +17,7 @@ var LISSAJOUS_UNCURVE = (function() {
     
     var screen = {
 
-        margin: .3,
+        margin: 0.3,
 
         getWidth: function() {
 
