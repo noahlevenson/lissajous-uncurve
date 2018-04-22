@@ -1,4 +1,6 @@
-# lissajous-uncurve
+
+![lissajous uncurve demo](https://github.com/noahlevenson/lissajous-uncurve/raw/master/luncurve_demo.gif)
+### lissajous-uncurve
 
 Lissajous Uncurve is a command line toy that generates and responsively animates ASCII [Lissajous curves](https://en.wikipedia.org/wiki/Lissajous_curve).
 
